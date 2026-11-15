@@ -1,0 +1,41 @@
+# Who and what the site tracks. ESPN ids are checked against ESPN's names at build time.
+defender:
+  name: Rudy Gobert
+  espn_id: "3032976"
+  first_season: 2014        # ESPN season = the year the season ends (2014 = 2013-14)
+
+opponents:
+  - slug: wembanyama
+    name: Victor Wembanyama
+    short: Wembanyama
+    espn_id: "5104157"
+    first_season: 2024
+  - slug: durant
+    name: Kevin Durant
+    short: Durant
+    espn_id: "3202"
+    first_season: 2008
+
+# Last season to try. Seasons ESPN doesn't have yet are skipped.
+last_season: 2027
+
+# Videos are kept only if YouTube reports one of these channels as the uploader
+# (official league, team, and major-network channels).
+video_channels:
+  - NBA
+  - Minnesota Timberwolves
+  - Utah Jazz
+  - San Antonio Spurs
+  - Phoenix Suns
+  - Houston Rockets
+  - Brooklyn Nets
+  - Golden State Warriors
+  - Oklahoma City Thunder
+  - ESPN
+  - NBA on TNT
+  - NBA on ESPN
+  - Bleacher Report
+  - House of Highlights     # Bleacher Report's highlights channel
+  - NBA Europe
+  - ESPN Australia
+  - FanDuel Sports Network North

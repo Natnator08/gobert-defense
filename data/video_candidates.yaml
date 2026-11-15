@@ -1,0 +1,23 @@
+# Candidate clips found by web search (November 2026). Each is verified at build time
+# with YouTube oEmbed; only official channels on the config allowlist whose titles name
+# Gobert are kept. "shows" describes the clip from its title only - not reviewed frame by frame.
+- url: https://www.youtube.com/shorts/FL-aqlZUfb4
+  opponent: durant
+  shows: Gobert defending Durant ("put the clamps on KD"), per the title.
+- url: https://www.youtube.com/shorts/Z-pZGO4WAYk
+  opponent: wembanyama
+  shows: Gobert defending Wembanyama closely ("all over Wemby"), per the title.
+- url: https://www.youtube.com/watch?v=ArB_FUiLCzs
+  opponent: wembanyama
+  shows: Best plays from a Wembanyama vs. Gobert game. Includes plays by both players, not only Gobert's defense.
+
+# Fan re-uploads of broadcast footage. Listed so the build reports why they're excluded.
+- url: https://www.youtube.com/watch?v=v7Xsa2FVT14
+  opponent: durant
+  shows: Gobert defending Durant late in a Rockets-Timberwolves game, per the title.
+- url: https://www.youtube.com/watch?v=ze66Ubrcfu4
+  opponent: durant
+  shows: Gobert strips Durant, then Durant scores on him, per the title.
+- url: https://www.youtube.com/watch?v=Xa8RyQIXSvY
+  opponent: wembanyama
+  shows: Gobert's Game 1 performance against Wembanyama (2026 playoffs), per the description.

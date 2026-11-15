@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rudy Gobert vs. Wembanyama &amp; Durant · Defense Tracker</title>
+  <meta name="description" content="Head-to-head defensive analytics for Rudy Gobert against Victor Wembanyama and Kevin Durant, from every game they've played, with official video.">
+  <link rel="stylesheet" href="css/style.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/app.css?v=__VERSION__">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Gobert Defense Tracker</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Matchups</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </header>
+
+  <main id="main" class="page-wide">
+    <div class="hero-head">
+      <div>
+        <h1 id="title">Rudy Gobert on defense</h1>
+        <p class="lede" id="lede">Every game Gobert has played against Victor Wembanyama and Kevin Durant, from ESPN box scores and play-by-play.</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div>
+        <div class="group-title" id="opp-label">Opponent</div>
+        <div class="seg" role="group" aria-labelledby="opp-label" id="opp-buttons"></div>
+      </div>
+      <label>Season
+        <select id="season-select"></select>
+      </label>
+    </div>
+
+    <section aria-labelledby="h-tiles">
+      <h2 id="h-tiles" class="visually-hidden">Summary</h2>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-onoff">
+      <h2 id="h-onoff">With Gobert on the court vs. on the bench</h2>
+      <p class="note" id="onoff-note"></p>
+      <div style="margin:.5rem 0 1rem"><span class="key"><i style="background:var(--accent)"></i>Gobert on the court</span><span class="key"><i style="background:var(--off)"></i>Gobert on the bench</span></div>
+      <div class="pairs" id="pairs"></div>
+      <p class="callout caution" style="margin-top:1rem">On/off splits only count time when <span class="opp-name"></span> was playing. They can't separate Gobert from who else was on the floor: when he sits, the other team is often resting starters too. Treat them as one piece of evidence, not a verdict.</p>
+    </section>
+
+    <section class="section" aria-labelledby="h-season" id="season-section">
+      <h2 id="h-season">Season by season</h2>
+      <p class="note">Points per game against Gobert's team compared with the same season's other games. Hover over a dot for details.</p>
+      <div class="card"><div class="legend-inline" id="season-legend"></div><div class="chart-box" id="season-chart"></div>
+        <details style="margin-top:.75rem"><summary>Show as a table</summary><div class="table-wrap" id="season-table"></div></details></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-shots">
+      <h2 id="h-shots">Where <span class="opp-name"></span> shot from</h2>
+      <p class="note">Every field-goal attempt in the selected games, split by whether Gobert was on the court. Filled = made, ring = missed, × = blocked by Gobert.</p>
+      <div class="courts" id="courts"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-blocks">
+      <h2 id="h-blocks">Gobert's blocks on <span class="opp-name"></span></h2>
+      <div class="card"><ul class="block-list" id="blocks"></ul></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-videos">
+      <h2 id="h-videos">Video</h2>
+      <p class="note">Official uploads only (NBA, team and network channels), embedded from YouTube and not re-hosted. Clips were chosen from their titles and descriptions and haven't been reviewed frame by frame. Videos aren't tied to a season, so they show for every season filter.</p>
+      <div class="videos" id="videos"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-nba" id="nba-section" hidden>
+      <h2 id="h-nba">NBA.com tracking: Gobert as primary defender</h2>
+      <p class="note">From NBA.com's player-tracking matchup data (2017-18 onward): only possessions where Gobert was <span class="opp-name"></span>'s primary defender.</p>
+      <div class="card table-wrap" id="nba-table"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-games">
+      <h2 id="h-games">Game log</h2>
+      <p class="note">Results are from Gobert's team's side. Playoff games are marked with a blue edge.</p>
+      <div class="card table-wrap" id="games"></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="footer"></footer>
+  <script type="module" src="js/app.js?v=__VERSION__"></script>
+</body>
+</html>

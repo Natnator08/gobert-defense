@@ -1,0 +1,66 @@
+/* Components specific to the Gobert defense tracker (tokens come from style.css). */
+:root { --off: #eb6834; }                       /* categorical slot 2 (orange): Gobert on the bench */
+@media (prefers-color-scheme: dark) { :root { --off: #d95926; } }
+
+.page-wide { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+.hero-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
+.controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; margin: 1.25rem 0; }
+.seg { display: inline-flex; border: 1px solid var(--axis); border-radius: 10px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; padding: .5rem 1rem; background: var(--surface); font-weight: 600; }
+.seg button + button { border-left: 1px solid var(--axis); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.controls label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; color: var(--text-2); }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.2rem; }
+.delta { font-size: .85rem; font-weight: 600; }
+.delta.good { color: #006300; }
+.delta.bad { color: #b42318; }
+@media (prefers-color-scheme: dark) { .delta.good { color: #0ca30c; } .delta.bad { color: #f97066; } }
+.delta::before { content: ""; }
+
+.section { margin-top: 2.5rem; }
+.section > h2 { margin-top: 0; }
+.note { color: var(--muted); font-size: .85rem; }
+
+/* paired on/off bars */
+.pairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.pair-card h3 { font-size: .95rem; margin-bottom: .6rem; }
+.pair-row { display: grid; grid-template-columns: 6.5rem 1fr; align-items: center; gap: .5rem; font-size: .85rem; margin: .35rem 0; }
+.pair-track { display: flex; align-items: center; }
+.pair-scale { flex: 0 0 calc(100% - 3.5rem); display: flex; }
+.pair-bar { height: 16px; border-radius: 0 4px 4px 0; min-width: 2px; }
+.pair-bar.on { background: var(--accent); }
+.pair-bar.off { background: var(--off); }
+.pair-val { margin-left: .4rem; font-variant-numeric: tabular-nums; }
+.key { display: inline-flex; align-items: center; gap: .35rem; margin-right: 1rem; font-size: .85rem; color: var(--text-2); }
+.key i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.flag { display: inline-block; font-size: .72rem; padding: .05rem .45rem; border-radius: 999px; background: var(--surface-2); color: var(--text-2); margin-left: .3rem; }
+
+/* shot charts */
+.courts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.court-card h3 { font-size: 1rem; margin-bottom: .2rem; }
+.court-card svg { width: 100%; height: auto; display: block; }
+
+/* blocks list */
+.block-list { list-style: none; padding: 0; margin: 0; }
+.block-list li { padding: .6rem 0; border-bottom: 1px solid var(--grid); display: grid; grid-template-columns: 9rem 1fr auto; gap: .75rem; align-items: baseline; }
+.block-list .when { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+
+/* video gallery */
+.videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.video-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.video-frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.video-frame.short { aspect-ratio: 9 / 16; max-height: 520px; margin: 0 auto; width: 100%; }
+.video-frame button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+.video-frame button:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.video-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.play { position: relative; width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.65); display: grid; place-items: center; }
+.play::after { content: ""; border-left: 20px solid #fff; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-body { padding: .8rem 1rem 1rem; display: flex; flex-direction: column; gap: .35rem; }
+.video-title { font-weight: 600; line-height: 1.35; }
+.video-meta { color: var(--muted); font-size: .8rem; }
+
+.empty { color: var(--muted); font-style: italic; }
+tr.playoff td:first-child { box-shadow: inset 3px 0 0 var(--accent); }

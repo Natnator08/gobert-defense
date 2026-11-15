@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology · Gobert Defense Tracker</title>
+  <link rel="stylesheet" href="css/style.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/app.css?v=__VERSION__">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Gobert Defense Tracker</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Matchups</a>
+      <a href="methodology.html" aria-current="page">Methodology</a>
+    </nav>
+  </header>
+  <main id="main" class="page" style="max-width:820px">
+    <h1>Methodology</h1>
+    <p class="lede">Where every number comes from, what it can and can't tell you, and how the videos were chosen.</p>
+
+    <div class="callout"><strong>The short version.</strong> Box scores and play-by-play show what happened while two
+      players were on the floor together. They don't show who was guarding whom on each possession, so every
+      number here is evidence about Gobert's defense, not a direct measurement of it.</div>
+
+    <h2>Which games count</h2>
+    <p>A game counts if it appears in <strong>both</strong> players' ESPN game logs, so games where either one sat out
+      are excluded. That includes regular-season and playoff games (and the play-in), but not preseason.
+      Wembanyama's games start in 2023-24; Durant's start with Gobert's rookie season, 2013-14.</p>
+
+    <h2>Head-to-head lines</h2>
+    <p>The opponent's points, shooting and turnovers come from ESPN box scores. "His other games" is his average in
+      every other game of the same season(s), so a season where he faced Gobert once is compared with that season,
+      not his whole career. <strong>True shooting</strong> = points ÷ (2 × (field-goal attempts + 0.44 × free-throw
+      attempts)), a single efficiency number that counts threes and free throws.</p>
+
+    <h2>Gobert on vs. on the bench</h2>
+    <p>ESPN play-by-play logs substitutions but not who starts each quarter, so lineups are rebuilt:</p>
+    <ul>
+      <li>Starters come from the box score.</li>
+      <li>After the first quarter, a player is assumed on the court at the start of a quarter if his first event in
+        that quarter is anything other than checking in.</li>
+      <li>Older ESPN data sometimes skips the substitution when a player sits out a whole quarter (common in
+        blowouts). For quarters where a player has no events at all, the build tests both possibilities and keeps
+        whichever matches his official minutes.</li>
+      <li>Every rebuilt total is checked against the box score: the opponent's points must match, and both players'
+        minutes must be within 2 minutes. In the current build <span id="pts-check"></span></li>
+    </ul>
+    <p>Only time when the opponent was on the floor counts. Splits with under <span id="min-split"></span> minutes are
+      flagged as small samples. The main limitation: when Gobert rests, the other team often rests its starters too,
+      so "Gobert off" minutes can mean easier or harder competition for reasons that have nothing to do with him.</p>
+
+    <h2>Shots and blocks</h2>
+    <p>Shot locations are ESPN's play-by-play coordinates. "At the rim" means 4 feet or closer by ESPN's stated
+      distance, or a layup or dunk with no distance given. A block counts when ESPN's play lists Gobert as the
+      blocker of the opponent's shot.</p>
+
+    <h2>NBA.com tracking (optional)</h2>
+    <p>NBA.com's matchup data uses player tracking to credit each possession's points to a primary defender. It's
+      the closest public measure of "Gobert guarding him", but it's only available from 2017-18 on and can't be
+      downloaded automatically from this project. The section appears only when that data has been added (see the
+      README for how to export it).</p>
+
+    <h2>Videos</h2>
+    <ul>
+      <li>Candidates were found by web search, then checked with YouTube's public embed lookup, which confirms the
+        video exists, allows embedding, and reports its real title and channel.</li>
+      <li>Only official league, team and network channels are kept, and the title must name Gobert. Fan re-uploads
+        of broadcast footage are left out even when relevant.</li>
+      <li>Clips are chosen from titles and descriptions; they haven't been reviewed frame by frame.</li>
+      <li>Videos are embedded from YouTube (privacy-enhanced mode, loaded only when you press play) and are never
+        downloaded or re-hosted.</li>
+    </ul>
+
+    <h2>Known gaps</h2>
+    <ul id="gaps"></ul>
+
+    <h2>Sources</h2>
+    <ul>
+      <li>ESPN game logs, box scores and play-by-play (public site APIs).</li>
+      <li>YouTube oEmbed for video verification; videos belong to their uploaders.</li>
+      <li>NBA.com player-tracking matchups, only if exported by hand.</li>
+    </ul>
+    <p class="note">Not affiliated with the NBA, ESPN or any team.</p>
+  </main>
+  <script type="module">
+    const v = "__VERSION__";
+    const S = await fetch(`data/summary.json?v=${v}`).then((r) => r.json());
+    const c = S.checks;
+    const total = S.opponents.reduce((n, o) => n + o.games, 0);
+    document.getElementById("min-split").textContent = S.min_split_minutes;
+    document.getElementById("pts-check").textContent =
+      `${total - c.no_pbp_games.length - c.points_mismatch_games.length} of ${total - c.no_pbp_games.length} games match the box-score points exactly, and ${c.minutes_mismatch_games.length} game(s) are off by more than 2 minutes.`;
+    const gaps = [];
+    if (c.no_pbp_games.length) gaps.push(`${c.no_pbp_games.length} game(s) have no play-by-play on ESPN (${c.no_pbp_games.join(", ")}). They appear in the game log and head-to-head lines but not in on/off splits, shots or blocks.`);
+    if (c.points_mismatch_games.length) gaps.push(`In ${c.points_mismatch_games.length} game(s) (${c.points_mismatch_games.join(", ")}) ESPN's play-by-play is missing a scoring play, so the opponent's play-by-play points fall slightly short of the box score.`);
+    gaps.push("Players with no logged event in a quarter can only be placed using official minutes, so a few short stints may be assigned to the wrong quarter.");
+    document.getElementById("gaps").innerHTML = gaps.map((g) => `<li>${g}</li>`).join("");
+  </script>
+</body>
+</html>
